@@ -1,13 +1,12 @@
- // Wait for DOM to fully load before executing JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     // Select DOM elements
-    const addButton = document.getElementById('add-button');
+    const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
     // Function to add new task
     function addTask() {
-        // Get and trim task text
+        // Get and trim the task text
         const taskText = taskInput.value.trim();
         
         // Validate input
@@ -18,19 +17,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Create new list item
         const li = document.createElement('li');
-        li.textContent = taskText;
-
+        
+        // Create task text span
+        const taskSpan = document.createElement('span');
+        taskSpan.textContent = taskText;
+        
         // Create remove button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
         removeBtn.className = 'remove-btn';
         
         // Add click handler to remove button
-        removeBtn.onclick = function() {
+        removeBtn.addEventListener('click', function() {
             taskList.removeChild(li);
-        };
+        });
 
         // Append elements
+        li.appendChild(taskSpan);
         li.appendChild(removeBtn);
         taskList.appendChild(li);
         
