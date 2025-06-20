@@ -50,4 +50,45 @@ document.addEventListener('DOMContentLoaded', function() {
             addTask();
         }
     });
+    function addTask() {
+    // Get and trim input value
+    const taskText = taskInput.value.trim();
+    
+    // Validate input
+    if (taskText === '') {
+        alert('Please enter a task!');
+        return;
+    }
+    
+    // Rest of implementation...
+}
+    // Create task element
+const li = document.createElement('li');
+li.textContent = taskText;
+
+// Create remove button
+const removeBtn = document.createElement('button');
+removeBtn.textContent = 'Remove';
+removeBtn.className = 'remove-btn';
+
+// Add removal functionality
+removeBtn.onclick = function() {
+    taskList.removeChild(li);
+};
+
+// Append elements
+li.appendChild(removeBtn);
+taskList.appendChild(li);
+
+// Clear input
+taskInput.value = '';
+    // Button click listener
+addButton.addEventListener('click', addTask);
+
+// Enter key listener
+taskInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        addTask();
+    }
+});
 });
